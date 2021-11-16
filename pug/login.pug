@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='robots' content='noindex, nofollow')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title #{data.server_name} | Login
+        link(href='/.theme/class-website/fontawesome-free/css/all.min.css' rel='stylesheet' type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i' rel='stylesheet')
+        link(href='/.theme/class-website/css/sb-admin-2.css' rel='stylesheet')
+    body.bg-gradient-primary
+        .container
+            .row.justify-content-center
+                .col-xl-10.col-lg-12.col-md-9
+                    .card.o-hidden.border-0.shadow-lg.my-5
+                        .card-body.p-0
+                            .row
+                                .col-lg-6.d-none.d-lg-block.bg-login-image
+                                .col-lg-6
+                                    .p-5
+                                        .text-center
+                                            unless data.login_failed
+                                                h1.h4.text-gray-900.mb-4 #{data.welcome_text}
+                                            else
+                                                h1.h4.mb-4.invalid-login-info #{data.welcome_text}
+                                        form.user(action='/login' method='post' enctype='application/x-www-form-urlencoded')
+                                            .form-group
+                                                input#exampleInputEmail.form-control.form-control-user(type='text' name='sid' placeholder='#{data.email_placeholder}')
+                                            .form-group
+                                                input#exampleInputPassword.form-control.form-control-user(type='password' name='password' placeholder='Password')
+                                            .form-group
+                                                .custom-control.custom-checkbox.small
+                                                    input#customCheck.custom-control-input(type='checkbox' checked='true' name='remember')
+                                                    label.custom-control-label(for='customCheck') Remember Me
+                                            input.btn.btn-primary.btn-user.btn-block(type='submit' value='Login')
+                                        hr
+                                        .text-center
+                                            a.small(href='/forgot-password') Forgot Password?
+            footer.sticky-footer.bg-transparent
+                .container.my-auto
+                    .copyright.text-center.my-auto
+                        span #{data.copy_notice}
+        script(src='/.theme/class-website/js/jquery.min.js')
+        script(src='/.theme/class-website/js/bootstrap.bundle.min.js')
+        script(src='/.theme/class-website/js/sb-admin-2.min.js')

@@ -1,0 +1,6 @@
+Flask
+Flask-Login
+Flask-Minify
+gunicorn
+pypugjs
+SQLAlchemy
