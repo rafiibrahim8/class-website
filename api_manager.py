@@ -8,9 +8,13 @@ class API:
         self.__func_map = {
             'add_user': self.__add_user,
             'add_course': self.__add_course,
-            'add_video': self.__add_video
+            'add_video': self.__add_video,
+            'delete_video': self.__delete_video
         }
     
+    def __delete_video(self, data):
+        self.__dbms.delete_video(data['video_id'])
+
     def __add_user(self, data):
         self.__dbms.update_user(data['student_id'], data['password'], data['full_name'])
 

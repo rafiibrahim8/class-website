@@ -98,9 +98,6 @@ class DBMS():
         if commit:
             self.__update_courses_time()
             DBMS.commit_session(self.dbSession)
-            epoch = int(time.time())
-            self.update_website_stuff('update_time_42', epoch)
-            self.update_website_stuff('update_time_41', epoch)
         return True
     
     def update_video(self, video_id, course_code, date_as_epoch, section, video_url):
