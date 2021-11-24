@@ -160,12 +160,12 @@ def change_pass_post():
 @app.post('/api')
 def handle_api_post():
     auth_header = f_req.headers.get('Authorization')
-    if not (auth_header and auth_header.lower() == f'bearer {env["api_token"]}'):
+    if not (auth_header and utils.secure_compare(auth_header.lower(), f'bearer {env["api_token"]}')):
         return 'Forbidden!', 403
     return api.handle_request(f_req.json)
 
 def main():
-    app.run(port=65003)
+    app.run(port=65005)
 
 if __name__ == '__main__':
     main()

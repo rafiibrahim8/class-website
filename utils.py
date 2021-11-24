@@ -45,10 +45,13 @@ def mk_hashed_pwd_from_plain(password, separator='$'):
     salt = base64.b64encode(os.urandom(32)).decode('utf-8')
     return mk_hashed_pwd_with_salt(password, salt, separator)
 
+def secure_compare(str1, str2):
+    return hmac.compare_digest(str1, str2)
+
 def compare_login_password(from_db, password, separator='$'):
     salt, _ =from_db.split(separator)
     from_local = mk_hashed_pwd_with_salt(password, salt)
-    return hmac.compare_digest(from_db, from_local) # prevent timing attack
+    return secure_compare(from_db, from_local) # prevent timing attack
 
 def send_admin_hook(hook_url, text):
     requests.post(hook_url, json={'content': text})
