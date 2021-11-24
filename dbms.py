@@ -75,7 +75,8 @@ class DBMS():
             self.dbSession.add(Users(student_id=student_id, password=password, full_name=full_name))
         else:
             user.password = password
-            user.full_name = full_name
+            if full_name:
+                user.full_name = full_name
         DBMS.commit_session(self.dbSession)
     
     def update_course(self, course_code, course_name, course_term, playlist_url):

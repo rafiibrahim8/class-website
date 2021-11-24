@@ -16,7 +16,7 @@ class API:
         self.__dbms.delete_video(data['video_id'])
 
     def __add_user(self, data):
-        self.__dbms.update_user(data['student_id'], data['password'], data['full_name'])
+        self.__dbms.update_user(data['student_id'], data['password'], data.get('full_name'))
 
     def __add_course(self, data):
         self.__dbms.update_course(data['course_code'], data['course_name'], data['course_term'], data['playlist_url'])
